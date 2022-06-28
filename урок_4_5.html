@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <script>
+        /*
+        y(x) = -x**2 - 4 * x - 3, if x <= -1
+                x + 1, if -1 < x <= 1
+                2/x, if x > 1
+        */
+        let x = prompt("Введите число х")*1;
+        let y;
+        
+        if (x <= -1){
+            y = x**2 - 4 * x - 3;
+        } else if (x > 1){
+            y = 2 / x;
+        } else {
+            y = x + 1;
+        };
+
+        alert(`y(x) = ${y}\nx = ${x}`)
+
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
