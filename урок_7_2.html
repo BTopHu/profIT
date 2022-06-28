@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <script>
+        function getF(n) {
+            if (n <= 5) {
+                return 2 * n;
+            } else if (n % 2 == 0) {
+                return getF(n - 2) + 3 * getF(n / 2) + n;
+            } else {
+                return getF(n - 1) + getF(n - 2) + getF(n - 3);
+            }
+        }
+
+        let n = +prompt("Введите число n");
+
+        alert(`F(n) = ${getF(n)}\nF(99) + F(100) = ${getF(99) + getF(100)}`);
+    </script>
+</head>
+
+<body>
+    <p>
+    <h1>Задание 2</h1>
+    Алгоритм вычисления функции F(n) задан следующими соотношениями:<br>
+
+    F(n) = 2n при n <= 5,<br>
+        F(n)=F(n–2) + 3 * F(n / 2) + n, при n > 5 и чётно,<br>
+        F(n) = F(n–1) + F(n–2) + F(n–3), при n > 5 и нечётно.<br>
+
+        Вычислить значение функции F(99) + F(100) используя рекурсивный алгоритм.<br>
+        </p>
+</body>
+
+</html>

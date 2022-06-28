@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <script>
+        function killSpace(str) {
+            return str.replace(/\s+/g, ' ')
+        }
+
+        let str;
+        let choice = +prompt("Если хотите ввести строку сами - 1");
+        switch (choice) {
+            case 1:
+                str = prompt("Введите текст строки");
+                break;
+            default:
+                str = "ослик,  суслик,   паукан";
+        };
+
+        console.log(str);
+        console.log(killSpace(str));
+
+    </script>
+</head>
+
+<body>
+    <p>
+    <h1>Задание 3</h1>
+    Написать функцию, которая из строки удаляет лишние пробелы, <br>
+    то есть в преобразованной строке не должно быть более одного пробела подряд. <br>
+    Вывод через консоль. <br>
+    </p>
+</body>
+
+</html>

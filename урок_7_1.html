@@ -1,0 +1,168 @@
+<html>
+
+<head>
+    <script>
+        function showMatrix(Arr, N1) {
+
+            for (let i = 0; i < N1; i++) {
+                document.write(Arr[i] + "<br>");
+            };
+        }
+
+        //Ввод даннх
+        let M = prompt("Введите кол-во строк первой матрицы")*1;
+        let N = prompt("Введите кол-во столбцов первой матрицы\nкол-во строк второй")*1;
+        
+        if (isNaN(N) || isNaN(M)) {
+            alert(`Ошибка!\nВы ввели не число. Пожалуйста повторите ввод`)
+        } else {
+            let L = N;
+            let E = [];
+            let D = [];
+
+            //создание матриц
+            let input = +prompt(" Если хотите ввести первую матрицу самостоятельно - Введите 1\n \
+Если хотите ввести вторую мотрицу самостоятельно - Введите 2\n \
+Если хотите ввести две мотрицы самостоятельно - Введите 3\n \
+Иначе матрицы будут случайными");
+
+            switch (input) {
+                case 1://1 - руками, 2 - рандом
+                    for (let i = 0; i < M; i++) {
+                        D[i] = [];
+                        for (let j = 0; j < N; j++) {
+                            D[i][j] = +prompt(`Введите элемент матрицы D`);;
+                        };
+                    };
+                    for (let i = 0; i < N; i++) {
+                        E[i] = [];
+                        for (let j = 0; j < L; j++) {
+                            E[i][j] = Math.floor(Math.random() * (100 - (-100)) + (-100));
+                        };
+                    };
+                    break;
+
+                case 2://1 - рандом, 2 - руками
+                    for (let i = 0; i < M; i++) {
+                        D[i] = [];
+                        for (let j = 0; j < N; j++) {
+                            D[i][j] = Math.floor(Math.random() * (100 - (-100)) + (-100));
+                        };
+                    };
+                    for (let i = 0; i < N; i++) {
+                        E[i] = [];
+                        for (let j = 0; j < L; j++) {
+                            E[i][j] = +prompt(`Введите элемент матрицы E`);
+                        };
+                    };
+                    break;
+
+                case 3://1, 2 - руками
+                    for (let i = 0; i < M; i++) {
+                        D[i] = [];
+                        for (let j = 0; j < N; j++) {
+                            D[i][j] = +prompt(`Введите элемент матрицы D`);
+                        };
+                    };
+                    for (let i = 0; i < N; i++) {
+                        E[i] = [];
+                        for (let j = 0; j < L; j++) {
+                            E[i][j] = +prompt(`Введите элемент матрицы E`);
+                        };
+                    };
+                    break;
+
+                default://1, 2 - рандом
+                    for (let i = 0; i < M; i++) {
+                        D[i] = [];
+                        for (let j = 0; j < N; j++) {
+                            D[i][j] = Math.floor(Math.random() * (100 - (-100)) + (-100));
+                        };
+                    };
+                    for (let i = 0; i < N; i++) {
+                        E[i] = [];
+                        for (let j = 0; j < L; j++) {
+                            E[i][j] = Math.floor(Math.random() * (100 - (-100)) + (-100));
+                        };
+                    };
+            };
+
+            document.write("<br>Матрица D<br>");
+            showMatrix(D, M);
+
+            document.write("<br>Матрица E<br>");
+            showMatrix(E, N);
+
+            //запись матрицы в массив
+            let TempArr = [];
+            let t = 0;
+            for (let i = 0; i < N; i++) {
+                for (let j = 0; j < L; j++) {
+                    TempArr[t] = E[i][j];
+                    t++;
+                };
+            };
+
+            //сортировка массива пузырьком
+            for (let i = TempArr.length - 1; i > 0; i--) {
+                for (let j = 0; j < i; j++) {
+                    if (TempArr[j] < TempArr[j + 1]) {
+                        let temp = TempArr[j];
+                        TempArr[j] = TempArr[j + 1];
+                        TempArr[j + 1] = temp;
+                    };
+                };
+            };
+
+            //запись массива в матрицу
+            t = 0;
+            let EE = [];
+            for (let i = 0; i < N; i++) {
+                EE[i] = [];
+                for (let j = 0; j < L; j++) {
+                    EE[i][j] = TempArr[t];
+                    t++;
+                };
+            };
+
+            //считаем матрицу F
+            let F = [];
+            let mul = 1;
+
+            for (let k = 0; k < N; k++) {
+                F[k] = [];
+                for (let i = 0; i < N; i++) {
+                    for (let j = 0; j < M; j++) {
+                        mul *= D[j][i];
+                    };
+                    if (mul != NaN) {
+                        F[k][i] = EE[k][i] + mul;
+                        mul = 1;
+                    };
+                };
+            };
+
+            //Вывод матрицы F
+            document.write("<br> Матрица F<br>");
+            showMatrix(F, N);
+
+            //вывод матрицы ЕЕ
+            document.write("<br>Матрица EE<br>");
+            showMatrix(EE, N);
+        }
+    </script>
+</head>
+
+<body>
+    <p>
+    <h1>Задание</h1>
+    Даны две числовые матрицы D(M, N) и E(N, L).
+    Получить матрицу ЕЕ из матрицы Е, расположив все элементы матрицы Е в порядке убывания (построчно слева
+    направо).
+    Получить результирующую матрицу F суммированием элементов каждой строки матрицы ЕЕ с произведением всех
+    элементов соответствующего столбца матрицы D.
+    Напечатать матрицы ЕЕ и F
+    </p>
+</body>
+
+</html>

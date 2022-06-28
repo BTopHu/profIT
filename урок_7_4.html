@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <script>
+        function getF(x) {
+            return 3 * x - Math.sin(x) - 7;
+        }
+
+        let a = 2;//2 и 3 нашел перебором
+        let b = 3;
+        let c;
+        while (b - a > 0.0001) {
+            c = (a + b) / 2;
+            if (getF(b) * getF(c) < 0) {
+                a = c;
+            } else {
+                b = c;
+            };
+        };
+        alert(`x = ${(a + b) / 2}`);
+    </script>
+</head>
+
+<body>
+    <p>
+    <h1>Задание 4</h1>
+    Найти корни нелинейного уравнения F(x)=3x-sin(x)-7 методом половинного деления.<br>
+    Вычисление значений F(x) организовать через функцию <br>
+    </p>
+</body>
+
+</html>
